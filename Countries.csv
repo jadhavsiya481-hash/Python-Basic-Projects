@@ -1,0 +1,51 @@
+Country,Capital,Continent,Population,Area_km2,GDP_Billion_USD,Official_Language,Currency,Life_Expectancy,Literacy_Rate
+India,New Delhi,Asia,1428000000,3287263,3730,Hindi,Indian Rupee,70.8,77.7
+China,Beijing,Asia,1411750000,9596961,17700,Chinese,Yuan,78.2,97.2
+United States,Washington D.C.,North America,339996563,9833517,26950,English,US Dollar,77.5,99.0
+Indonesia,Jakarta,Asia,277534122,1904569,1390,Indonesian,Rupiah,71.7,96.0
+Pakistan,Islamabad,Asia,240485658,881913,375,Urdu,Pakistani Rupee,66.1,62.3
+Nigeria,Abuja,Africa,223804632,923768,477,English,Naira,55.8,62.0
+Brazil,Brasilia,South America,216422446,8515767,2170,Portuguese,Brazilian Real,75.9,94.7
+Bangladesh,Dhaka,Asia,172954319,148460,460,Bengali,Taka,73.7,75.6
+Russia,Moscow,Europe,144444359,17098242,2240,Russian,Ruble,72.4,99.7
+Mexico,Mexico City,North America,128455567,1964375,1810,Spanish,Mexican Peso,75.1,95.4
+Japan,Tokyo,Asia,123294513,377975,4210,Japanese,Yen,84.5,99.0
+Philippines,Manila,Asia,117337368,300000,440,Filipino,Philippine Peso,71.4,96.3
+Ethiopia,Addis Ababa,Africa,126527060,1104300,156,Amharic,Birr,66.5,51.8
+Egypt,Cairo,Africa,112716599,1002450,476,Arabic,Egyptian Pound,70.2,75.0
+Vietnam,Hanoi,Asia,100300000,331212,433,Vietnamese,Dong,75.4,95.8
+Germany,Berlin,Europe,83240525,357022,4450,German,Euro,81.2,99.0
+Turkey,Ankara,Asia,85816199,783562,1150,Turkish,Lira,78.6,97.6
+Iran,Tehran,Asia,89172767,1648195,404,Persian,Rial,76.7,89.0
+Thailand,Bangkok,Asia,71801279,513120,515,Thai,Baht,78.7,94.1
+United Kingdom,London,Europe,67736802,243610,3340,English,Pound Sterling,81.3,99.0
+France,Paris,Europe,68042591,551695,3030,French,Euro,82.5,99.0
+Italy,Rome,Europe,58870763,301340,2160,Italian,Euro,83.0,99.2
+South Africa,Pretoria,Africa,60414495,1221037,406,English,Rand,64.9,95.0
+South Korea,Seoul,Asia,51784059,100210,1720,Korean,Won,83.5,98.8
+Spain,Madrid,Europe,48373336,505990,1580,Spanish,Euro,83.1,98.5
+Argentina,Buenos Aires,South America,45773884,2780400,641,Spanish,Peso,76.7,99.0
+Algeria,Algiers,Africa,45606481,2381741,239,Arabic,Dinar,76.4,81.4
+Ukraine,Kyiv,Europe,36744634,603500,160,Ukrainian,Hryvnia,71.6,99.7
+Sudan,Khartoum,Africa,48109006,1886068,34,Arabic,Sudanese Pound,66.1,60.7
+Iraq,Baghdad,Asia,45504560,438317,265,Arabic,Iraqi Dinar,71.1,85.6
+Afghanistan,Kabul,Asia,42239854,652230,15,Pashto,Afghani,65.0,43.0
+Poland,Warsaw,Europe,36821749,312696,842,Polish,Zloty,78.5,99.8
+Canada,Ottawa,North America,40097761,9984670,2140,English,Canadian Dollar,82.3,99.0
+Morocco,Rabat,Africa,37840044,446550,152,Arabic,Dirham,75.9,73.8
+Saudi Arabia,Riyadh,Asia,36947025,2149690,1100,Arabic,Riyal,77.6,97.6
+Uzbekistan,Tashkent,Asia,35163944,448978,90,Uzbek,Som,71.7,100.0
+Peru,Lima,South America,34352719,1285216,268,Spanish,Sol,77.4,94.5
+Malaysia,Kuala Lumpur,Asia,34308525,330803,434,Malay,Ringgit,76.4,95.0
+Angola,Luanda,Africa,36684202,1246700,107,Portuguese,Kwanza,62.1,71.1
+Mozambique,Maputo,Africa,33897354,801590,21,Portuguese,Metical,61.3,60.7
+Ghana,Accra,Africa,34121985,238533,76,English,Cedi,64.5,79.0
+Yemen,Sanaa,Asia,34449825,527968,20,Arabic,Rial,66.1,70.1
+Nepal,Kathmandu,Asia,30896590,147516,41,Nepali,Nepalese Rupee,70.8,68.0
+Madagascar,Antananarivo,Africa,30325732,587041,16,Malagasy,Ariary,67.3,74.8
+Australia,Canberra,Oceania,26600000,7692024,1700,English,Australian Dollar,83.2,99.0
+North Korea,Pyongyang,Asia,26160821,120540,Korean,Won,73.3,100.0
+Taiwan,Taipei,Asia,23923276,36197,790,Chinese,New Taiwan Dollar,81.3,98.9
+Sri Lanka,Colombo,Asia,21893579,65610,84,Sinhala,Sri Lankan Rupee,77.0,92.0
+Netherlands,Amsterdam,Europe,17942595,41543,1010,Dutch,Euro,82.2,99.0
+Chile,Santiago,South America,19629590,756102,344,Spanish,Chilean Peso,80.0,96.4
