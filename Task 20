@@ -1,0 +1,372 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMU07QfK4r2uAI3ZDY7ExHx",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/jadhavsiya481-hash/Python-Basic-Projects/blob/main/Task%2020\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "mt-q7EJaxV5N"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "from sklearn.preprocessing import StandardScaler\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "from sklearn.linear_model import LinearRegression\n",
+        "from sklearn.metrics import r2_score\n",
+        "import joblib"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df = pd.read_csv('ford.csv')"
+      ],
+      "metadata": {
+        "id": "F9stedZ7y9-X"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "X = df.drop('price', axis=1)\n",
+        "y = df['price']\n",
+        "\n",
+        "print('Shape of X = ', X.shape)\n",
+        "print('Shape of y = ', y.shape)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "KluXS4PKy-Fh",
+        "outputId": "edff0c23-023b-47e9-dccc-e9f336867f58"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Shape of X =  (17965, 8)\n",
+            "Shape of y =  (17965,)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "cat_cols = X.select_dtypes(include='object').columns\n",
+        "print(cat_cols)\n",
+        "\n",
+        "X = pd.get_dummies(X, columns=cat_cols)\n",
+        "X = X.astype(int)\n",
+        "print(X.head())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "CE8fTcHvy-RJ",
+        "outputId": "9a4c221b-cd52-42d3-8ec2-5b29345a45bc"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Index(['model', 'transmission', 'fuelType'], dtype='object')\n",
+            "   year  mileage  tax  mpg  engineSize  model_ B-MAX  model_ C-MAX  \\\n",
+            "0  2017    15944  150   57           1             0             0   \n",
+            "1  2018     9083  150   57           1             0             0   \n",
+            "2  2017    12456  150   57           1             0             0   \n",
+            "3  2019    10460  145   40           1             0             0   \n",
+            "4  2019     1482  145   48           1             0             0   \n",
+            "\n",
+            "   model_ EcoSport  model_ Edge  model_ Escort  ...  model_ Tourneo Custom  \\\n",
+            "0                0            0              0  ...                      0   \n",
+            "1                0            0              0  ...                      0   \n",
+            "2                0            0              0  ...                      0   \n",
+            "3                0            0              0  ...                      0   \n",
+            "4                0            0              0  ...                      0   \n",
+            "\n",
+            "   model_ Transit Tourneo  transmission_Automatic  transmission_Manual  \\\n",
+            "0                       0                       1                    0   \n",
+            "1                       0                       0                    1   \n",
+            "2                       0                       0                    1   \n",
+            "3                       0                       0                    1   \n",
+            "4                       0                       1                    0   \n",
+            "\n",
+            "   transmission_Semi-Auto  fuelType_Diesel  fuelType_Electric  \\\n",
+            "0                       0                0                  0   \n",
+            "1                       0                0                  0   \n",
+            "2                       0                0                  0   \n",
+            "3                       0                0                  0   \n",
+            "4                       0                0                  0   \n",
+            "\n",
+            "   fuelType_Hybrid  fuelType_Other  fuelType_Petrol  \n",
+            "0                0               0                1  \n",
+            "1                0               0                1  \n",
+            "2                0               0                1  \n",
+            "3                0               0                1  \n",
+            "4                0               0                1  \n",
+            "\n",
+            "[5 rows x 36 columns]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "scaler = StandardScaler()\n",
+        "\n",
+        "num_cols = ['year','mileage','tax','mpg','engineSize']\n",
+        "X[num_cols] = scaler.fit_transform(X[num_cols])\n",
+        "\n",
+        "print(X.head())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "01OTWKdzy-ZW",
+        "outputId": "89d1a7ee-3585-4bcf-8898-7041602fae33"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "       year   mileage       tax       mpg  engineSize  model_ B-MAX  \\\n",
+            "0  0.065077 -0.381049  0.591295 -0.042123   -0.447999             0   \n",
+            "1  0.552813 -0.733409  0.591295 -0.042123   -0.447999             0   \n",
+            "2  0.065077 -0.560182  0.591295 -0.042123   -0.447999             0   \n",
+            "3  1.040549 -0.662691  0.510661 -1.721153   -0.447999             0   \n",
+            "4  1.040549 -1.123773  0.510661 -0.931021   -0.447999             0   \n",
+            "\n",
+            "   model_ C-MAX  model_ EcoSport  model_ Edge  model_ Escort  ...  \\\n",
+            "0             0                0            0              0  ...   \n",
+            "1             0                0            0              0  ...   \n",
+            "2             0                0            0              0  ...   \n",
+            "3             0                0            0              0  ...   \n",
+            "4             0                0            0              0  ...   \n",
+            "\n",
+            "   model_ Tourneo Custom  model_ Transit Tourneo  transmission_Automatic  \\\n",
+            "0                      0                       0                       1   \n",
+            "1                      0                       0                       0   \n",
+            "2                      0                       0                       0   \n",
+            "3                      0                       0                       0   \n",
+            "4                      0                       0                       1   \n",
+            "\n",
+            "   transmission_Manual  transmission_Semi-Auto  fuelType_Diesel  \\\n",
+            "0                    0                       0                0   \n",
+            "1                    1                       0                0   \n",
+            "2                    1                       0                0   \n",
+            "3                    1                       0                0   \n",
+            "4                    0                       0                0   \n",
+            "\n",
+            "   fuelType_Electric  fuelType_Hybrid  fuelType_Other  fuelType_Petrol  \n",
+            "0                  0                0               0                1  \n",
+            "1                  0                0               0                1  \n",
+            "2                  0                0               0                1  \n",
+            "3                  0                0               0                1  \n",
+            "4                  0                0               0                1  \n",
+            "\n",
+            "[5 rows x 36 columns]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "\n",
+        "print('Shape of X_train = ', X_train.shape)\n",
+        "print('Shape of y_train = ', y_train.shape)\n",
+        "print('Shape of X_test = ', X_test.shape)\n",
+        "print('Shape of y_test = ', y_test.shape)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "p-Rfk1mJy-kY",
+        "outputId": "1136f91c-1395-4aef-ce77-7b6883567249"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Shape of X_train =  (14372, 36)\n",
+            "Shape of y_train =  (14372,)\n",
+            "Shape of X_test =  (3593, 36)\n",
+            "Shape of y_test =  (3593,)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "model = LinearRegression()\n",
+        "model.fit(X_train, y_train)\n",
+        "\n",
+        "print(\"Intercept:\")\n",
+        "print(model.intercept_)\n",
+        "\n",
+        "print(\"Coefficients:\")\n",
+        "print(model.coef_)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VpX8TVcGy-u2",
+        "outputId": "35554f71-d635-4515-e728-218353a7be23"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Intercept:\n",
+            "17448.754917109254\n",
+            "Coefficients:\n",
+            "[ 2048.88081545 -1310.6538752    -16.71728864  -946.21415782\n",
+            "   905.59231019 -3893.66753663 -2968.45134483 -2664.67883488\n",
+            "  4424.52796854 10087.27733918 -3092.62472182  -944.62890131\n",
+            "  -135.02596025  1865.25362365 -2612.69940602   193.01765038\n",
+            " -4574.77345214 -6915.88935957  -677.76494689 -1598.45557367\n",
+            "  8561.04258769  3402.84218284  1305.15018347  1613.29645876\n",
+            "   663.50773644  -691.07650655  1642.80486117 -2988.98404759\n",
+            "   253.76629456  -266.3902461     12.62395154 -2196.52650889\n",
+            "  -443.92684552  7492.91179726 -1485.275225   -3367.18321785]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "y_predt = model.predict(X_test)\n",
+        "\n",
+        "print('First 10 predicted values:')\n",
+        "print(y_predt[:10])\n",
+        "\n",
+        "print('First 10 actual values:')\n",
+        "print(y_test.iloc[:10].values)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7xYgcQUB2I_E",
+        "outputId": "521984dd-9a34-4709-b646-f54038c98c2f"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "First 10 predicted values:\n",
+            "[15663.90862084  9351.78936955  9366.57782746  4576.95360033\n",
+            "  2233.13893452 16987.73234343 29423.46685177 12533.07842503\n",
+            " 11342.80777373 17300.93315596]\n",
+            "First 10 actual values:\n",
+            "[12495  8999  7998  5491  3790 18200 22998 11000  7600 14985]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "r2 = r2_score(y_test, y_predt)\n",
+        "print('R2 Score:', r2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "aV9ctjuU2Jsb",
+        "outputId": "426cae09-36a0-4800-a385-e715db99fda1"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "R2 Score: 0.8494346546558328\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "joblib.dump(model, \"LR_ford_car.pkl\")\n",
+        "\n",
+        "joblib.dump(scaler, \"scaler.pkl\")\n",
+        "\n",
+        "joblib.dump(X.columns.tolist(), \"columns.pkl\")\n",
+        "\n",
+        "print(\"All files saved successfully\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4d8AR1xuy-6p",
+        "outputId": "0b77ed26-4336-43d2-c064-a1760daa029e"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "All files saved successfully\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
